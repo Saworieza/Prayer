@@ -9,20 +9,29 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <%= link_to 'Home', root_path, class: "navbar-brand" %>
+              
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <%= link_to 'About', about_path %>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <%= link_to 'Contact', contact_path %>
                     </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                  <% if user_signed_in? %>
+                  <li><%= link_to 'Profile', edit_user_registration_path %></li>
+				  <li><%#= image_tag current_user.avatar.url(:thumb) %></li>
+    			  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "page-scroll fa fa-sign-out " %></li>
+                  <% else %>
+                  <li><%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-success" %></li>
+                  <li><%= link_to 'Login', new_user_session_path, class: "btn btn-info" %></li>
+                  <% end %>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
